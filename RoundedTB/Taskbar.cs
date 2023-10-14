@@ -244,7 +244,7 @@ namespace RoundedTB
                     Height = Convert.ToInt32(taskbar.TaskbarRect.Bottom - taskbar.TaskbarRect.Top - (settings.DynamicWidgetsLayout.MarginBottom * taskbar.ScaleFactor)) + 1
                 };
 
-                centredDistanceFromEdge = taskbar.TaskbarRect.Right - taskbar.AppListRect.Right - Convert.ToInt32(2 * taskbar.ScaleFactor);
+                centredDistanceFromEdge = taskbar.TaskbarRect.Right - taskbar.AppListRect.Right + (taskbar.AppListRect.Right - taskbar.AppListRect.Left) - Convert.ToInt32(2 * taskbar.ScaleFactor);
 
                 // If on Windows 10, add an extra 20 logical pixels for the grabhandle
                 if (!settings.IsWindows11)
@@ -256,13 +256,13 @@ namespace RoundedTB
                 if (settings.IsCentred)
                 {
                     mainRegion = LocalPInvoke.CreateRoundRectRgn(
-                        centredDistanceFromEdge + centredEffectiveRegion.Left,
-                        centredEffectiveRegion.Top,
-                        centredEffectiveRegion.Width - centredDistanceFromEdge,
-                        centredEffectiveRegion.Height,
-                        centredEffectiveRegion.CornerRadius,
+                        centredDistanceFromEdge + centredEffectiveRegion.Left + 48,
+                        centeredEffectiveRegion.Top,
+                        centredEffectiveRegion.Width - centredDistanceFromEdge - 48,
+                        centeredEffectiveRegion.Height,
+                        centeredEffectiveRegion.CornerRadius,
                         centredEffectiveRegion.CornerRadius
-                        );
+                    );
                 }
 
                 // Create a region for if the taskbar is left-aligned, right-to-right distance (centredDistanceFromEdge) off from the right-hand side, as well as the margin
