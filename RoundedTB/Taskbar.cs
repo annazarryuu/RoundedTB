@@ -262,7 +262,7 @@ namespace RoundedTB
                         centeredEffectiveRegion.Height,
                         centeredEffectiveRegion.CornerRadius,
                         centredEffectiveRegion.CornerRadius
-                    );
+                        );
                 }
 
                 // Create a region for if the taskbar is left-aligned, right-to-right distance (centredDistanceFromEdge) off from the right-hand side, as well as the margin
